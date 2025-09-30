@@ -6,22 +6,36 @@
     width: 100%;
 }
 .square {
-    width: 250px;
-    height: 255px;
-    display: grid;
-    grid-template-columns: repeat(5, 50px);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    border-left: 1px solid #000;
-    border-top: 1px solid #000;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+
+    &-row {
+        display: flex;
+        flex-direction: row;
+    }
 
     &-item {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-right: 1px solid #000;
-        border-bottom: 1px solid #000;
+        border-right: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        background-color: aquamarine;
     }
+}
+.col-sum {
+    background-color: unset;
+    border-right: 3px solid #fff;
+    border-bottom: unset;
+}
+.row-sum {
+    background-color: unset;
+    border-right: unset;
+    border-bottom: 3px solid #fff;
+    border-top: unset;
 }

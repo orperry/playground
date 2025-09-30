@@ -1,11 +1,18 @@
 <div class="square">
-    @for (row of fiveInSquare; track row) {
+    @for (row of fiveInSquare; track row; let j = $index) {
         <div class="square-row">
             @for (cell of row; track cell) {
                 <div class="square-item">
                     {{ cell }}
                 </div>
             }
+            <div class="square-item row-sum">{{ j }}</div>
         </div>
     }
+    <div class="square-row">
+        @for (k of [0, 1, 2, 3, 4]; track k; let i = $index) {
+            <div class="square-item col-sum">{{ i }}</div>
+        }
+        <div class="square-item col-sum"></div>
+    </div>
 </div>
