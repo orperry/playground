@@ -2,5 +2,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FiveInSquareService {
-  
+  public initArrays(): number[][] {
+    // Create a 5x5 array filled with zeros
+    return Array.from({ length: 5 }, () => Array(5).fill(0));
+  }
 }

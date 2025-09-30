@@ -1,0 +1,11 @@
+<div class="square">
+    @for (row of fiveInSquare; track row) {
+        <div class="square-row">
+            @for (cell of row; track cell) {
+                <div class="square-item">
+                    {{ cell }}
+                </div>
+            }
+        </div>
+    }
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FiveInSquareService } from '../../services/five-in-square.service';
 
 @Component({
@@ -7,8 +7,15 @@ import { FiveInSquareService } from '../../services/five-in-square.service';
   imports: [],
   providers: [FiveInSquareService],
   templateUrl: './five-in-square.component.html',
-  styleUrl: './five-in-square.component.scss'
+  styleUrls: ['./five-in-square.component.scss']
 })
-export class FiveInSquareComponent {
+export class FiveInSquareComponent implements OnInit {
+  public fiveInSquare: number[][] = [];
+
+  constructor(private fiveInSquareService: FiveInSquareService) {}
+
+  ngOnInit(): void {
+    this.fiveInSquare = this.fiveInSquareService.initArrays();
+  }
 
 }
