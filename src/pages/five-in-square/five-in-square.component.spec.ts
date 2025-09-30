@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FiveInSquare } from './five-in-square';
+import { FiveInSquareComponent } from './five-in-square.component';
 
-describe('FiveInSquare', () => {
-  let component: FiveInSquare;
-  let fixture: ComponentFixture<FiveInSquare>;
+describe('FiveInSquareComponent', () => {
+  let component: FiveInSquareComponent;
+  let fixture: ComponentFixture<FiveInSquareComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FiveInSquare]
+      imports: [FiveInSquareComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FiveInSquare);
+    fixture = TestBed.createComponent(FiveInSquareComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
