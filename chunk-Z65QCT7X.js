@@ -1,0 +1,1 @@
+import{ma as i,wa as n,xa as a,ya as s}from"./chunk-OBW5UMJ3.js";var o=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=i({type:t,selectors:[["app-five-in-square"]],decls:2,vars:0,template:function(e,f){e&1&&(n(0,"p"),s(1,"five-in-square works!"),a())},encapsulation:2})};export{o as FiveInSquare};
