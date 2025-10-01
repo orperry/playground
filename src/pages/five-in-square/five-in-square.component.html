@@ -1,4 +1,4 @@
-<h1>Five in a Square</h1>
+<h1 [ngClass]="{ 'won': isWin$ | async }">Five in a Square</h1>
 
 @let matrix = (matrix$ | async);
 @let productRows = (productRows$ | async);
@@ -20,3 +20,5 @@
         <div class="square-item col-product"></div>
     </div>
 </div>
+
+<h3 [ngClass]="{ 'won': isWin$ | async }">Steps: {{ steps$ | async }}</h3>

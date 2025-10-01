@@ -13,7 +13,17 @@ export class FiveInSquareService {
   private matrix: BehaviorSubject<FiveInSquare> = new BehaviorSubject<FiveInSquare>(this.initMatrix());
   public matrix$ = this.matrix.asObservable();
 
+  private steps: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public steps$ = this.steps.asObservable();
+
+  private isWin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isWin$ = this.isWin.asObservable();
+
   public selectCell(row: number, col: number): void {
+    if (this.isWin.getValue()) {
+      return;
+    }
+    this.steps.next(this.steps.getValue() + 1);
     const currentMatrix = this.matrix.getValue();
     const cell = currentMatrix[row][col];
     cell.isSelected = !cell.isSelected;
@@ -30,7 +40,6 @@ export class FiveInSquareService {
         isUsed: masks[i][j]
       }))
     );
-    console.log(matrix);
     this.calculateProducts(matrix);
     return matrix;
   }
@@ -129,5 +138,14 @@ private calculateProducts(matrix: FiveInSquare): void {
 
     this.productRows.next(rowProducts);
     this.productColumns.next(colProducts);
+    this.checkWinCondition(rowProducts, colProducts);
+  }
+
+  private checkWinCondition(rowProducts: ProductItem[], colProducts: ProductItem[]): void {
+    const allRowsMatched = rowProducts.every(item => item.isMatched);
+    const allColsMatched = colProducts.every(item => item.isMatched);
+    if (allRowsMatched && allColsMatched) {
+      this.isWin.next(true);
+    }
   }
 }

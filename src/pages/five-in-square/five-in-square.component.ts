@@ -16,6 +16,8 @@ export class FiveInSquareComponent implements OnInit {
   public matrix$!: Observable<FiveInSquare>;
   public productColumns$!: Observable<ProductItem[]>;
   public productRows$!: Observable<ProductItem[]>;
+  public steps$!: Observable<number>;
+  public isWin$!: Observable<boolean>;
 
   constructor(private fiveInSquareService: FiveInSquareService) {}
 
@@ -23,6 +25,8 @@ export class FiveInSquareComponent implements OnInit {
     this.matrix$ = this.fiveInSquareService.matrix$;
     this.productColumns$ = this.fiveInSquareService.productColumns$;
     this.productRows$ = this.fiveInSquareService.productRows$;
+    this.steps$ = this.fiveInSquareService.steps$;
+    this.isWin$ = this.fiveInSquareService.isWin$;
   }
 
   public selectCell(row: number, col: number): void {
