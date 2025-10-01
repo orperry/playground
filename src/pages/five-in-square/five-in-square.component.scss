@@ -4,6 +4,11 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    font-family: "Alan Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-size: x-large;
 }
 .square {
     display: flex;
@@ -18,8 +23,8 @@
     }
 
     &-item {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -28,14 +33,19 @@
         background-color: aquamarine;
     }
 }
-.col-sum {
+.col-product {
     background-color: unset;
     border-right: 3px solid #fff;
     border-bottom: unset;
+    font-size: large;
 }
-.row-sum {
+.row-product {
     background-color: unset;
     border-right: unset;
     border-bottom: 3px solid #fff;
     border-top: unset;
+    font-size: large;
+}
+.used {
+    background-color: orange;
 }

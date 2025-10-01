@@ -1,18 +1,20 @@
+@let matrix = (matrix$ | async);
+@let productRows = (productRows$ | async);
 <div class="square">
-    @for (row of fiveInSquare; track row; let j = $index) {
+    @for (row of matrix; track row; let j = $index) {
         <div class="square-row">
             @for (cell of row; track cell) {
-                <div class="square-item">
-                    {{ cell }}
+                <div class="square-item" [ngClass]="{ 'used': cell.isUsed }">
+                    {{ cell.value }}
                 </div>
             }
-            <div class="square-item row-sum">{{ j }}</div>
+            <div class="square-item row-product">{{ productRows?.[j]?.product | number }}</div>
         </div>
     }
     <div class="square-row">
-        @for (k of [0, 1, 2, 3, 4]; track k; let i = $index) {
-            <div class="square-item col-sum">{{ i }}</div>
+        @for (productColumns of productColumns$ | async; track productColumns) {
+            <div class="square-item col-product">{{ productColumns.product | number }}</div>
         }
-        <div class="square-item col-sum"></div>
+        <div class="square-item col-product"></div>
     </div>
 </div>
