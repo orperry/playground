@@ -36,18 +36,23 @@
     }
 }
 .col-product {
+    color: #999;
     background-color: unset;
     border-right: 3px solid #fff;
     border-bottom: unset;
     font-size: large;
 }
 .row-product {
+    color: #999;
     background-color: unset;
     border-right: unset;
     border-bottom: 3px solid #fff;
     border-top: unset;
     font-size: large;
 }
-.used {
+.selected {
     background-color: orange;
+}
+.matched {
+    color: green;
 }

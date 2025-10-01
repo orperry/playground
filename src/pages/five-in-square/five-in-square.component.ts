@@ -24,4 +24,8 @@ export class FiveInSquareComponent implements OnInit {
     this.productColumns$ = this.fiveInSquareService.productColumns$;
     this.productRows$ = this.fiveInSquareService.productRows$;
   }
+
+  public selectCell(row: number, col: number): void {
+    this.fiveInSquareService.selectCell(row, col);
+  }
 }

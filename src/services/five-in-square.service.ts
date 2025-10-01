@@ -13,6 +13,14 @@ export class FiveInSquareService {
   private matrix: BehaviorSubject<FiveInSquare> = new BehaviorSubject<FiveInSquare>(this.initMatrix());
   public matrix$ = this.matrix.asObservable();
 
+  public selectCell(row: number, col: number): void {
+    const currentMatrix = this.matrix.getValue();
+    const cell = currentMatrix[row][col];
+    cell.isSelected = !cell.isSelected;
+    this.matrix.next([...currentMatrix]);
+    this.calculateProducts(currentMatrix);
+  }
+
   private initMatrix(): FiveInSquare {
     const numbers = this.initNumbersArrays();
     const masks = this.initMaskArrays();
@@ -51,7 +59,7 @@ export class FiveInSquareService {
 
     // Fill each row ensuring 2-4 trues
     for (let row = 0; row < size; row++) {
-      const targetTrues = Math.floor(Math.random() * 3) + 2; // 2-4 trues
+      const targetTrues = Math.floor(Math.random() * 2) + 2; // 2-3 trues
       let placedTrues = 0;
       
       // Try placing trues while respecting column constraints
@@ -82,7 +90,7 @@ export class FiveInSquareService {
     return matrix;
   }
 
-  private calculateProducts(matrix: FiveInSquare): void {
+private calculateProducts(matrix: FiveInSquare): void {
     const size = 5;
     const rowProducts: ProductItem[] = [];
     const colProducts: ProductItem[] = [];
@@ -90,23 +98,33 @@ export class FiveInSquareService {
     // Calculate row products
     for (let i = 0; i < size; i++) {
       let product = 1;
+      let productSelected = 1;
       for (let j = 0; j < size; j++) {
         if (matrix[i][j].isUsed) {
           product *= matrix[i][j].value;
         }
+        if (matrix[i][j].isSelected) {
+          productSelected *= matrix[i][j].value;
+        }
       }
-      rowProducts.push({ product, isMatched: false });
+      const isMatched = productSelected > 1 && productSelected === product;
+      rowProducts.push({ product, isMatched });
     }
 
     // Calculate column products
     for (let j = 0; j < size; j++) {
       let product = 1;
+      let productSelected = 1;
       for (let i = 0; i < size; i++) {
         if (matrix[i][j].isUsed) {
           product *= matrix[i][j].value;
         }
+        if (matrix[i][j].isSelected) {
+          productSelected *= matrix[i][j].value;
+        }
       }
-      colProducts.push({ product, isMatched: false });
+      const isMatched = productSelected > 1 && productSelected === product;
+      colProducts.push({ product, isMatched });
     }
 
     this.productRows.next(rowProducts);

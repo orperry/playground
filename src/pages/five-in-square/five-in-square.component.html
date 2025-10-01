@@ -5,17 +5,17 @@
 <div class="square">
     @for (row of matrix; track row; let j = $index) {
         <div class="square-row">
-            @for (cell of row; track cell) {
-                <div class="square-item" [ngClass]="{ 'used': cell.isUsed }">
+            @for (cell of row; track cell; let i = $index) {
+                <div class="square-item" [ngClass]="{ 'selected': cell.isSelected }" (click)="selectCell(j, i)">
                     {{ cell.value }}
                 </div>
             }
-            <div class="square-item row-product">{{ productRows?.[j]?.product | number }}</div>
+            <div class="square-item row-product" [ngClass]="{ 'matched': productRows?.[j]?.isMatched }">{{ productRows?.[j]?.product | number }}</div>
         </div>
     }
     <div class="square-row">
         @for (productColumns of productColumns$ | async; track productColumns) {
-            <div class="square-item col-product">{{ productColumns.product | number }}</div>
+            <div class="square-item col-product" [ngClass]="{ 'matched': productColumns?.isMatched }">{{ productColumns.product | number }}</div>
         }
         <div class="square-item col-product"></div>
     </div>
